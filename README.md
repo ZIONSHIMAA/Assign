@@ -1,2 +1,1 @@
-# Assign
-Generate password
+"# 2PASS" 
