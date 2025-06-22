@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate Password</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generate Password</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-   <div class="container">
-    <form>
-        <h1>REGISTER HERE</h1>
-        <input type="text" id="FirstName" placeholder="FirstName" required>
-        <input type="text" id="LastName" placeholder="LastName" required>
-        <input type="email" id="email" placeholder="email" required>
-        <input type="number" id="Mobile" placeholder="Mobile" required>
-        <input type="text" id="password" placeholder="password">
-        <button onclick="createpassword()">Generate Password</button>
+  <div class="container">
+    <form onsubmit="return false;">
+      <h1>REGISTER HERE</h1>
+      <input type="text" id="FirstName" placeholder="FirstName" required />
+      <input type="text" id="LastName" placeholder="LastName" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="number" id="Mobile" placeholder="Mobile" required />
+      <input type="text" id="password" placeholder="Password" readonly />
+      <button type="button" onclick="createPassword()">Generate Password</button>
     </form>
-   </div> 
+  </div>
 
-   <script>
-
+  <script>
     const passwordBox = document.getElementById("password");
-    const lenght = 12;
-    
+    const length = 12;
+
     const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowerCase = "abcdefghijklmnopqrstuvwxyz";
     const number = "0123456789";
     const symbol = "@#$%^&*()_+~|}{[]></-=";
 
-    const allchars = upperCase + lowerCase + number + symbol;
+    const allChars = upperCase + lowerCase + number + symbol;
 
-   function createpassword(){
-       let password ="";
-       password += upperCase[Math.floor(Math.random() * upperCase.lenght)];
-       password += lowerCase[Math.floor(Math.random() * lowerCase.lenght)];
-       password += number[Math.floor(Math.random() * number.lenght)];
-       password += symbol[Math.floor(Math.random() * symbol.lenght)];
+    function createPassword() {
+      let password = "";
+      password += upperCase[Math.floor(Math.random() * upperCase.length)];
+      password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+      password += number[Math.floor(Math.random() * number.length)];
+      password += symbol[Math.floor(Math.random() * symbol.length)];
 
-       while(lenght > password.lenght){
-           password += allchars[Math.floor(Math.random() * allchars.lenght)];
-        }
-       passwordBox.value = password;
+      while (password.length < length) {
+        password += allChars[Math.floor(Math.random() * allChars.length)];
+      }
+
+      // Shuffle password to randomize character positions
+      password = password.split('').sort(() => Math.random() - 0.5).join('');
+      passwordBox.value = password;
     }
-    
   </script>
-
 </body>
 </html>
